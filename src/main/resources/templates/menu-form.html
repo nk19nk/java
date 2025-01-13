@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Dish</title>
+</head>
+<body>
+<h1 th:text="${#strings.isEmpty(menu.id) ? 'Add New Dish' : 'Edit Dish'}"></h1>
+<form th:object="${menu}" th:action="@{'/menu/save'}" method="post">
+    <label for="restaurantId">Restaurant ID:</label>
+    <input type="number" id="restaurantId" th:field="*{restaurantId}" required><br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" required><br>
+    <label for="description">Description:</label>
+    <textarea id="description" th:field="*{description}"></textarea><br>
+    <label for="price">Price:</label>
+    <input type="number" id="price" step="0.01" th:field="*{price}" required><br>
+    <label for="isVegetarian">Vegetarian:</label>
+    <input type="checkbox" id="isVegetarian" th:field="*{isVegetarian}"><br>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

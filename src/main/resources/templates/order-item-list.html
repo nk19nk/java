@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Items</title>
+</head>
+<body>
+<h1>Order Items</h1>
+<a href="/order-items/new">Add New Order Item</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Order ID</th>
+    <th>Menu ID</th>
+    <th>Quantity</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="orderItem : ${orderItems}">
+    <td th:text="${orderItem.orderId}"></td>
+    <td th:text="${orderItem.menuId}"></td>
+    <td th:text="${orderItem.quantity}"></td>
+    <td>
+      <a th:href="@{'/order-items/edit/' + ${orderItem.orderId} + '/' + ${orderItem.menuId}}">Edit</a>
+      <form th:action="@{'/order-items/delete/' + ${orderItem.orderId} + '/' + ${orderItem.menuId}}" method="post" style="display:inline;">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

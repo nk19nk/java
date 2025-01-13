@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/Edit Order Item</title>
+</head>
+<body>
+<h1 th:text="${#strings.isEmpty(orderItem.orderId) ? 'Add New Order Item' : 'Edit Order Item'}"></h1>
+<form th:object="${orderItem}" th:action="@{'/order-items/save'}" method="post">
+    <label for="orderId">Order ID:</label>
+    <input type="number" id="orderId" th:field="*{orderId}" required><br>
+    <label for="menuId">Menu ID:</label>
+    <input type="number" id="menuId" th:field="*{menuId}" required><br>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" th:field="*{quantity}" required><br>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants</title>
+</head>
+<body>
+<h1>Restaurants</h1>
+<a href="/restaurants/new">Add New Restaurant</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Date of Foundation</th>
+        <th>Phone</th>
+        <th>Opening Time</th>
+        <th>Closing Time</th>
+        <th>Rating</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="restaurant : ${restaurants}">
+        <td th:text="${restaurant.id}"></td>
+        <td th:text="${restaurant.name}"></td>
+        <td th:text="${restaurant.address}"></td>
+        <td th:text="${restaurant.dateOfFoundation}"></td>
+        <td th:text="${restaurant.phone}"></td>
+        <td th:text="${restaurant.openingTime}"></td>
+        <td th:text="${restaurant.closingTime}"></td>
+        <td th:text="${restaurant.rating}"></td>
+        <td>
+            <a th:href="@{'/restaurants/edit/' + ${restaurant.id}}">Edit</a>
+            <form th:action="@{'/restaurants/delete/' + ${restaurant.id}}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

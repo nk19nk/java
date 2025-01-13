@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+<h1>Menu</h1>
+<a href="/menu/new">Add New Dish</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Restaurant ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Vegetarian</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="menu : ${menus}">
+        <td th:text="${menu.id}"></td>
+        <td th:text="${menu.restaurantId}"></td>
+        <td th:text="${menu.name}"></td>
+        <td th:text="${menu.description}"></td>
+        <td th:text="${menu.price}"></td>
+        <td th:text="${menu.isVegetarian}"></td>
+        <td>
+            <a th:href="@{'/menu/edit/' + ${menu.id}}">Edit</a>
+            <form th:action="@{'/menu/delete/' + ${menu.id}}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
